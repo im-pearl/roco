@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}post_detail.html{% endblock %}
+
+{% block content %}
+<h2>{{ object.title }}</h2>
+<p class="date">{{ object.create_date|date:"j F Y" }}</p>
+    <br/>
+<div>
+    {{ object.content|linebreaks }}
+</div>
+
+<div>
+    <b>Cosmetics: </b>
+    {% load tagging_tags %}
+    {% tags_for_object object as tags %}
+    {% for tag in tags %}
+    <a href="{% url 'motd:tagged_object_list' tag.name %}">{{ tag.name }}</a>
+    {% endfor %}
+
+    <a href="{% url 'motd:tag_cloud' %}"><i>CosmeticCloud</i></a>
+</div>
+{% endblock %}

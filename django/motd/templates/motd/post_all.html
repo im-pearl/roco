@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}post_all.html{% endblock %}
+
+{% block content %}
+{% for post in posts %}
+    <h2><a href = '{{  post.get_absolute_url }}'>{{ post.title }}</a></h2>
+    {{ post.create_date|date:"N d, Y" }}
+    <p>{{ post.content }}</p>
+{% endfor %}
+
+# <--무한스크롤-->
+{% endblock %}
